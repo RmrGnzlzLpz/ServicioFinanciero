@@ -1,0 +1,8 @@
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\bin\Debug\netcoreapp3.0\Domain.deps.json
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\bin\Debug\netcoreapp3.0\Domain.dll
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\bin\Debug\netcoreapp3.0\Domain.pdb
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\obj\Debug\netcoreapp3.0\Domain.csprojAssemblyReference.cache
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\obj\Debug\netcoreapp3.0\Domain.AssemblyInfoInputs.cache
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\obj\Debug\netcoreapp3.0\Domain.AssemblyInfo.cs
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\obj\Debug\netcoreapp3.0\Domain.dll
+D:\Documents\Datos\10mo Semestre\TDD\C#\Taller\ServicioFinanciero\Domain\obj\Debug\netcoreapp3.0\Domain.pdb
