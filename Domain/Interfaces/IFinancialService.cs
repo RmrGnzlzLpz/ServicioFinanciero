@@ -5,9 +5,10 @@ using Domain.ValueObject;
 
 namespace Domain.Interfaces
 {
-    interface IFinancialService
+    public interface IFinancialService
     {
         string Income(Transaction transaccion);
         string Discharge(Transaction transaccion);
+        string Translate(Transaction transaction, IFinancialService account);
     }
 }

@@ -6,7 +6,7 @@ using Domain.ValueObject;
 
 namespace Domain.Base
 {
-    public abstract class FinancialService : IFinancialService
+    public abstract class FinancialService : Entity<int>, IFinancialService
     {
         protected double _initialAmount;
         protected double _nationalCost;
@@ -42,6 +42,13 @@ namespace Domain.Base
             Transactions.Add(transaction);
             Balance -= transaction.Amount;
             return $"Su Nuevo Saldo es de ${Balance} pesos";
+        }
+
+        public virtual string Translate(Transaction transaction, IFinancialService account)
+        {
+            Discharge(transaction);
+            account.Income(transaction);
+            return $"Transacción exitosa por valor de {transaction.Amount}";
         }
 
         override
