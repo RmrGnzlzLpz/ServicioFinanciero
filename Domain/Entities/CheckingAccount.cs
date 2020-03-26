@@ -8,11 +8,11 @@ namespace Domain.Entities
     public class CheckingAccount : FinancialService
     {
         private readonly double _overdraftQuota;
-        public CheckingAccount(double overdraftQuota = 0) : base(initialAmount: 10000)
+        public CheckingAccount() : base(initialAmount: 10000)
         {
         }
 
-        override public string Income(ValueObject.Transaction transaction)
+        override public string Income(Transaction transaction)
         {
             if (IsFirstTransaction && transaction.Amount < _initialAmount)
             {
@@ -21,7 +21,7 @@ namespace Domain.Entities
             return base.Income(transaction);
         }
 
-        override public string Discharge(ValueObject.Transaction transaction)
+        override public string Discharge(Transaction transaction)
         {
             transaction.Amount += 4 * (transaction.Amount % 1000);
             if ((Balance - transaction.Amount) < (-1 * _overdraftQuota))

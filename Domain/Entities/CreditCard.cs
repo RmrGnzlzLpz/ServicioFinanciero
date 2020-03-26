@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Base;
-using Domain.ValueObject;
 
 namespace Domain.Entities
 {

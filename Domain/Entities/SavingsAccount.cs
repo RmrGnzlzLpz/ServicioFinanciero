@@ -9,7 +9,7 @@ namespace Domain.Entities
         public SavingsAccount() : base(initialAmount: 50000, nationalCost: 10000, minimunBalance: 20000, additionalCost: 5000)
         {
         }
-        override public string Income(ValueObject.Transaction transaction)
+        override public string Income(Transaction transaction)
         {
             
             if (transaction.City != City) transaction.Amount -= _nationalCost;
@@ -24,7 +24,7 @@ namespace Domain.Entities
             return base.Income(transaction);
         }
 
-        override public string Discharge(ValueObject.Transaction transaccion)
+        override public string Discharge(Transaction transaccion)
         {
             if ((Balance - transaccion.Amount) < _minimunBalance)
             {

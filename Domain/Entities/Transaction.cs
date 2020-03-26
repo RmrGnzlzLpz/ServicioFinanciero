@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Base;
 
-namespace Domain.ValueObject
+namespace Domain.Entities
 {
-    public class Transaction
+    public class Transaction : Entity<int>
     {
         public double Amount { get; set; }
         public string City { get; set; }

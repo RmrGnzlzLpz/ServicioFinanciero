@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.ValueObject;
 using NUnit.Framework;
 using System;
 
@@ -51,7 +50,7 @@ namespace Domain.Test
                 Amount = 49950,
                 City = account.City
             };
-            Assert.AreEqual("El valor mínimo de la primera consignación debe ser de $50000 pesos. Su nuevo saldo es $0 pesos", account.Income(transaction));
+            Assert.AreEqual("El valor mï¿½nimo de la primera consignaciï¿½n debe ser de $50000 pesos. Su nuevo saldo es $0 pesos", account.Income(transaction));
         }
 
         [Test]

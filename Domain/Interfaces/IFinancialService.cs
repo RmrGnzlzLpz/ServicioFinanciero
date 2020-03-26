@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Domain.ValueObject;
+using Domain.Entities;
 
 namespace Domain.Interfaces
 {

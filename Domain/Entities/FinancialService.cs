@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Base;
+using Domain.Entities;
 using Domain.Interfaces;
-using Domain.ValueObject;
 
-namespace Domain.Base
+namespace Domain.Entities
 {
     public abstract class FinancialService : Entity<int>, IFinancialService
     {
