@@ -29,7 +29,7 @@ namespace Application.Services
 
         _unitOfWork.FinancialServiceRepository.Add(newAccount);
         _unitOfWork.Commit();
-        return new CrearCuentaBancariaResponse() { Message = $"Se creó con exito la cuenta {newAccount.Number} {newAccount.GetType()}." };
+        return new CrearCuentaBancariaResponse() { Message = $"Se creó con exito la cuenta {newAccount.Number}." };
       }
       catch (System.Exception ex)
       {
