@@ -14,18 +14,17 @@ namespace Application
     }
     public CrearCuentaBancariaResponse Ejecutar(CrearCuentaBancariaRequest request)
     {
-      FinancialService cuenta = _unitOfWork.CuentaBancariaRepository.FindFirstOrDefault(t => t.Number == request.Number);
+      FinancialService cuenta = _unitOfWork.FinancialServiceRepository.FindFirstOrDefault(t => t.Number == request.Number);
       if (cuenta != null) return new CrearCuentaBancariaResponse() { Message = $"El número de cuenta ya exite" };
 
-      FinancialService cuentaNueva = new SavingsAccount(); //Debe ir un factory que determine que tipo de cuenta se va a crear
-      cuentaNueva.Name = request.Name;
-      cuentaNueva.Number = request.Number;
-      _unitOfWork.CuentaBancariaRepository.Add(cuentaNueva);
+      FinancialService cuentaNueva = new SavingsAccount{
+        Name = request.Name,
+        Number = request.Number
+      };
+      _unitOfWork.FinancialServiceRepository.Add(cuentaNueva);
       _unitOfWork.Commit();
       return new CrearCuentaBancariaResponse() { Message = $"Se creó con exito la cuenta {cuentaNueva.Number}." };
     }
-
-
 
   }
   public class CrearCuentaBancariaRequest

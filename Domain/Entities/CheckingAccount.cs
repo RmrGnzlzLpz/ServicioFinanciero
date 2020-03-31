@@ -10,25 +10,27 @@ namespace Domain.Entities
         private readonly double _overdraftQuota;
         public CheckingAccount() : base(initialAmount: 10000)
         {
+            _overdraftQuota = 50000;
         }
 
-        override public string Income(Transaction transaction)
+        public override void Income(Transaction transaction)
         {
             if (IsFirstTransaction && transaction.Amount < _initialAmount)
             {
-                return($"La consignación mínima de ${_initialAmount} pesos");
+                throw new InvalidOperationException($"La consignación mínima de ${_initialAmount} pesos");
             }
-            return base.Income(transaction);
+            base.Income(transaction);
         }
 
-        override public string Discharge(Transaction transaction)
+        public override void Discharge(Transaction transaction)
         {
             transaction.Amount += 4 * (transaction.Amount % 1000);
+            // 0 - 49.000 < - 50.000
             if ((Balance - transaction.Amount) < (-1 * _overdraftQuota))
             {
-                return($"El saldo mínimo debe ser mayor o igual al cupo de sobregiro (${_overdraftQuota} pesos)");
+                throw new InvalidOperationException($"El saldo mínimo debe ser mayor o igual al cupo de sobregiro (${_overdraftQuota} pesos)");
             }
-            return base.Discharge(transaction);
+            base.Discharge(transaction);
         }
     }
 }

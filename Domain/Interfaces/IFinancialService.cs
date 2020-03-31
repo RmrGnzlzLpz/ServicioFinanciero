@@ -7,8 +7,11 @@ namespace Domain.Interfaces
 {
     public interface IFinancialService
     {
-        string Income(Transaction transaccion);
-        string Discharge(Transaction transaccion);
-        string Translate(Transaction transaction, IFinancialService account);
+        string Number { get; set; }
+        string Name { get; set; }
+        double Balance { get; set; }
+        void Income(Transaction transaccion);
+        void Discharge(Transaction transaccion);
+        void Translate(Transaction transaction, IFinancialService account);
     }
 }

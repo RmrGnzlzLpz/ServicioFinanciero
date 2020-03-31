@@ -16,11 +16,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class CuentaBancariaController : ControllerBase
     {
-        readonly BancoContext _context;
+        readonly IDbContext _context;
         readonly IUnitOfWork _unitOfWork;
         
         //Se Recomienda solo dejar la Unidad de Trabajo
-        public CuentaBancariaController(BancoContext context,IUnitOfWork unitOfWork)
+        public CuentaBancariaController(IDbContext context,IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _context = context;

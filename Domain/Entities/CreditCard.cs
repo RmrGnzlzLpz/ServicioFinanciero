@@ -9,36 +9,40 @@ namespace Domain.Entities
     {
         private readonly double _preApprovedQuota;
 
+        public CreditCard()
+        {
+            
+        }
         public CreditCard(double preApprovedQuota = 0)
         {
             _preApprovedQuota = preApprovedQuota;
         }
 
         override
-        public string Income(Transaction transaction)
+        public void Income(Transaction transaction)
         {
             if (transaction.Amount <= 0)
             {
-                return("El valor de abono no puede ser menor o igual a 0");
+                throw new InvalidOperationException("El valor de abono no puede ser menor o igual a 0");
             }
             if (transaction.Amount > (-1 * Balance))
             {
-                return("El valor de abono no puede ser mayor al saldo de la tarjeta");
+                throw new InvalidOperationException("El valor de abono no puede ser mayor al saldo de la tarjeta");
             }
-            return base.Income(transaction);
+            base.Income(transaction);
         }
         override
-        public string Discharge(Transaction transaction)
+        public void Discharge(Transaction transaction)
         {
             if (transaction.Amount <= 0)
             {
-                return("El valor del avance debe ser mayor a 0");
+                throw new InvalidOperationException("El valor del avance debe ser mayor a 0");
             }
             if (transaction.Amount > (-1 * Balance))
             {
-                return("El valor del avance no puede ser mayor al valor disponible de la tarjeta");
+                throw new InvalidOperationException("El valor del avance no puede ser mayor al valor disponible de la tarjeta");
             }
-            return base.Discharge(transaction);
+            base.Discharge(transaction);
         }
     }
 }

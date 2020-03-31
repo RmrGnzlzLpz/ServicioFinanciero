@@ -17,8 +17,8 @@ namespace Domain.Entities
         public string Name { get; set; }
         public string City { get; set; }
         public double Balance { get; set; }
-        public IList<Transaction> Transactions { get; set; }
-        protected bool IsFirstTransaction { get => Balance == 0; }
+        public List<Transaction> Transactions { get; set; }
+        protected bool IsFirstTransaction { get => Transactions.Count == 0; }
 
         public FinancialService(double initialAmount = 0, double nationalCost = 0, double minimunBalance = 0, double additionalCost = 0)
         {
@@ -29,33 +29,30 @@ namespace Domain.Entities
             _additionalCost = additionalCost;
         }
 
-        public virtual string Income(Transaction transaction)
+        public virtual void Income(Transaction transaction)
         {
             transaction.Type = TransactionType.Income;
             Transactions.Add(transaction);
             Balance += transaction.Amount;
-            return $"Su Nuevo Saldo es de ${Balance} pesos";
         }
 
-        public virtual string Discharge(Transaction transaction)
+        public virtual void Discharge(Transaction transaction)
         {
             transaction.Type = TransactionType.Discharge;
             Transactions.Add(transaction);
             Balance -= transaction.Amount;
-            return $"Su Nuevo Saldo es de ${Balance} pesos";
         }
 
-        public virtual string Translate(Transaction transaction, IFinancialService account)
+        public virtual void Translate(Transaction transaction, IFinancialService account)
         {
             Discharge(transaction);
             account.Income(transaction);
-            return $"Transacción exitosa por valor de {transaction.Amount}";
         }
 
         override
         public string ToString()
         {
-            return $"Number:{Number}, Name:{Name}, City:{City}, Balance: {Balance}, Transactions:{Transactions.Count}";
+            return $"Number:{Number}, Name:{Name}, City:{City}, Balance: {Balance}";
         }
     }
 }

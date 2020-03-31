@@ -14,7 +14,7 @@ namespace Application
 
     public ConsignarResponse Ejecutar(ConsignarRequest request)
     {
-      var cuenta = _unitOfWork.CuentaBancariaRepository.FindFirstOrDefault(t => t.Number == request.AccountNumber);
+      var cuenta = _unitOfWork.FinancialServiceRepository.FindFirstOrDefault(t => t.Number == request.AccountNumber);
       if (cuenta != null)
       {
         cuenta.Income(new Transaction { Amount = request.Amount });

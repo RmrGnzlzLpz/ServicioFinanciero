@@ -1,6 +1,6 @@
 namespace Domain.Base
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         
     }

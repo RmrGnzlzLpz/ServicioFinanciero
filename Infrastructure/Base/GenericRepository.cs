@@ -8,12 +8,10 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Base
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T>
-       where T : BaseEntity
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         protected IDbContext _db;
         protected readonly DbSet<T> _dbset;
-
 
         protected GenericRepository(IDbContext context)
         {
@@ -102,8 +100,6 @@ namespace Infrastructure.Base
         {
             _dbset.AddRange(entities);
         }
-
-
 
     }
 }

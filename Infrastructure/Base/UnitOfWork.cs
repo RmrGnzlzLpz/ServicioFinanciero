@@ -7,10 +7,10 @@ namespace Infrastructure.Base
 {
   public class UnitOfWork : IUnitOfWork
   {
-    private IDbContext _dbContext;
+        private IDbContext _dbContext;
 
-        private ICuentaBancariaRepository _cuentaBancariaRepository;
-        public ICuentaBancariaRepository CuentaBancariaRepository { get { return _cuentaBancariaRepository ?? (_cuentaBancariaRepository = new CuentaBancariaRepository(_dbContext)); } }
+        private IFinancialServiceRepository _financialServiceRepository;
+        public IFinancialServiceRepository FinancialServiceRepository { get { return _financialServiceRepository ?? (_financialServiceRepository = new FinancialServiceRepository(_dbContext)); } }
 
         public UnitOfWork(IDbContext context)
         {
