@@ -15,7 +15,6 @@ dotnet --version
 ```
 
 ### Migraciones 🔧
-* _Modificar la conexión a la base de datos, en el archivo **appsettings.json**_
 * _Ubicarse en la carpeta **Infrastructure** y ejecutar los siguientes comandos_
 ```
 dotnet ef migrations add Initial --context=BancoContext -s ../WebApi/
