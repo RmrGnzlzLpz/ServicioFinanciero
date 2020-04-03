@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Contracts;
 using Domain.Factory;
 using Domain.Interfaces;
+using Application.Models;
 
 namespace Application.Services
 {
@@ -16,35 +17,26 @@ namespace Application.Services
       _unitOfWork = unitOfWork;
       _factory = new FinancialServiceFactory();
     }
-    public CrearCuentaBancariaResponse Ejecutar(CrearCuentaBancariaRequest request)
+    public CreateFinancialServiceResponse Ejecutar(CreateFinancialServiceRequest request)
     {
       FinancialService cuenta = _unitOfWork.FinancialServiceRepository.FindFirstOrDefault(t => t.Number == request.Number);
-      if (cuenta != null) return new CrearCuentaBancariaResponse() { Message = "El número de cuenta ya existe." };
+      if (cuenta != null) return new CreateFinancialServiceResponse() { Message = "El número de cuenta ya existe." };
 
       try
       {
         FinancialService newAccount = _factory.CreateEntity(request.AccountType);
         newAccount.Name = request.Name;
         newAccount.Number = request.Number;
+        newAccount.City = request.City;
 
         _unitOfWork.FinancialServiceRepository.Add(newAccount);
         _unitOfWork.Commit();
-        return new CrearCuentaBancariaResponse() { Message = $"Se creó con exito la cuenta {newAccount.Number}." };
+        return new CreateFinancialServiceResponse() { Message = $"Se creó con exito la cuenta {newAccount.Number}." };
       }
       catch (System.Exception ex)
       {
-        return new CrearCuentaBancariaResponse() { Message = ex.Message };
+        return new CreateFinancialServiceResponse() { Message = ex.Message };
       }
     }
-  }
-  public class CrearCuentaBancariaRequest
-  {
-    public string Name { get; set; }
-    public int AccountType { get; set; }
-    public string Number { get; set; }
-  }
-  public class CrearCuentaBancariaResponse
-  {
-    public string Message { get; set; }
   }
 }

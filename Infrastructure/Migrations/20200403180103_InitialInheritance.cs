@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialInheritance : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "FinancialServices",
+                name: "financial_services",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,15 +17,17 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     Balance = table.Column<double>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Discriminator = table.Column<string>(nullable: false),
+                    AnnualInterestRate = table.Column<double>(nullable: true),
+                    Days = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FinancialServices", x => x.Id);
+                    table.PrimaryKey("PK_financial_services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
+                name: "transactions",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -38,28 +40,28 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.PrimaryKey("PK_transactions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactions_FinancialServices_FinancialServiceId",
+                        name: "FK_transactions_financial_services_FinancialServiceId",
                         column: x => x.FinancialServiceId,
-                        principalTable: "FinancialServices",
+                        principalTable: "financial_services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_FinancialServiceId",
-                table: "Transactions",
+                name: "IX_transactions_FinancialServiceId",
+                table: "transactions",
                 column: "FinancialServiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "transactions");
 
             migrationBuilder.DropTable(
-                name: "FinancialServices");
+                name: "financial_services");
         }
     }
 }

@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Application.Models;
 
 namespace ConsoleUI
 {
@@ -35,9 +36,9 @@ namespace ConsoleUI
         {
 
             CrearCuentaBancariaService _service = new CrearCuentaBancariaService(new UnitOfWork(context));
-            var requestCrer = new CrearCuentaBancariaRequest() { Number = "524255", Name = "Boris Arturo" };
+            var requestCrer = new CreateFinancialServiceRequest() { Number = "524255", Name = "Boris Arturo" };
 
-            CrearCuentaBancariaResponse responseCrear = _service.Ejecutar(requestCrer);
+            CreateFinancialServiceResponse responseCrear = _service.Ejecutar(requestCrer);
 
             System.Console.WriteLine(responseCrear.Message);
         }

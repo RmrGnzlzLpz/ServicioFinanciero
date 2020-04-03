@@ -58,7 +58,10 @@ namespace Domain.Test
     [Test]
     public void CorrectPosterior()
     {
-      account.Balance = 30000;
+      account.Income(new Transaction {
+        Amount = 50000,
+        City = account.City
+      });
       Transaction transaction = new Transaction
       {
         Amount = 49950,

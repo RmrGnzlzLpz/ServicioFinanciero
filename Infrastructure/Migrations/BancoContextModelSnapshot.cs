@@ -44,7 +44,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FinancialServices");
+                    b.ToTable("financial_services");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("FinancialService");
                 });
@@ -75,7 +75,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("FinancialServiceId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("transactions");
                 });
 
             modelBuilder.Entity("Domain.Entities.CheckingAccount", b =>
@@ -102,6 +102,12 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Tdc", b =>
                 {
                     b.HasBaseType("Domain.Entities.FinancialService");
+
+                    b.Property<double>("AnnualInterestRate")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Tdc");
                 });

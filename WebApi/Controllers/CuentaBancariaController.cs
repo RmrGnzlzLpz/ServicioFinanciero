@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Models;
 using Application.Services;
 using Domain.Contracts;
 using Infrastructure;
@@ -27,10 +28,10 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CrearCuentaBancariaResponse> Post(CrearCuentaBancariaRequest request)
+        public ActionResult<CreateFinancialServiceResponse> Post(CreateFinancialServiceRequest request)
         {
             CrearCuentaBancariaService _service = new CrearCuentaBancariaService(_unitOfWork);
-            CrearCuentaBancariaResponse response = _service.Ejecutar(request);
+            CreateFinancialServiceResponse response = _service.Ejecutar(request);
             return Ok(response);
         }
 

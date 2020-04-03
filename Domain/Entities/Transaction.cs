@@ -9,7 +9,7 @@ namespace Domain.Entities
     {
         public double Amount { get; set; }
         public string City { get; set; }
-        public DateTime DateTime {get; set;} =  DateTime.Now;
+        public DateTime DateTime { get; set; } =  DateTime.UtcNow;
         public TransactionType Type { get; set; }
     }
 

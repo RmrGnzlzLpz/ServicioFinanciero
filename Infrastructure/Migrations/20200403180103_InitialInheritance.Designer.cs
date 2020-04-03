@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20200331224315_Initial")]
-    partial class Initial
+    [Migration("20200403180103_InitialInheritance")]
+    partial class InitialInheritance
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FinancialServices");
+                    b.ToTable("financial_services");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("FinancialService");
                 });
@@ -77,7 +77,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("FinancialServiceId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("transactions");
                 });
 
             modelBuilder.Entity("Domain.Entities.CheckingAccount", b =>
@@ -104,6 +104,12 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Tdc", b =>
                 {
                     b.HasBaseType("Domain.Entities.FinancialService");
+
+                    b.Property<double>("AnnualInterestRate")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Tdc");
                 });
