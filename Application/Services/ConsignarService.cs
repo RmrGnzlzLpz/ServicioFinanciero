@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Repositories;
 using System;
+using System.Linq;
 
 namespace Application.Services
 {
@@ -15,7 +16,7 @@ namespace Application.Services
 
     public ConsignarResponse Ejecutar(ConsignarRequest request)
     {
-      var cuenta = _unitOfWork.FinancialServiceRepository.FindFirstOrDefault(t => t.Number == request.AccountNumber);
+      var cuenta = _unitOfWork.FinancialServiceRepository.FindBy(t => t.Number == request.AccountNumber, includeProperties: "Transactions").FirstOrDefault();
       if (cuenta == null) return new ConsignarResponse { Message = $"Error: Número de Cuenta {request.AccountNumber} No Válido." };
       try
       {

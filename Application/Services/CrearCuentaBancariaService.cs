@@ -31,7 +31,7 @@ namespace Application.Services
 
         _unitOfWork.FinancialServiceRepository.Add(newAccount);
         _unitOfWork.Commit();
-        return new CreateFinancialServiceResponse() { Message = $"Se creó con exito la cuenta {newAccount.Number}." };
+        return new CreateFinancialServiceResponse() { Message = $"Se creo con exito la cuenta {newAccount.Number}." };
       }
       catch (System.Exception ex)
       {
